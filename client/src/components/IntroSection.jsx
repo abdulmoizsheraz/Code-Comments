@@ -5,8 +5,7 @@ const IntroSection = () => {
   return (
     <div id="introsection">
       <h1>
-        AI Code Comment Generator
-        <BotResponse response=" - The Ultimate AI Assistant" />
+         Code Comments Generator
       </h1>
   
     </div>
