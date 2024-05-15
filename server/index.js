@@ -1,31 +1,35 @@
 require("dotenv").config();
-
 const express = require("express");
 const app = express();
 const port = 4000;
-
-const { Configuration, OpenAIApi } = require("openai");
-const configuration = new Configuration({
-  apiKey: process.env.REACT_APP_OPENAI_API_KEY,
-});
-const openai = new OpenAIApi(configuration);
-
-// adding body-parser and cors
 const bodyParser = require("body-parser");
-const cors = require("cors");
+const cors = require("cors")
 
 app.use(bodyParser.json());
 app.use(cors());
 
 app.post("/", async (req, res) => {
   const { message } = req.body;
-  const response = await openai.createCompletion({
-    model: "text-davinci-003",
-    prompt: message,
-    max_tokens: 3000,
-    temperature: 0.3,
+
+  try {
+    const Groq = require("groq-sdk");
+const groq = new Groq({
+  apiKey: "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", 
+});
+   
+    const result = await groq.chat.completions.create({
+      messages: [
+          {
+              role: "user",
+              content: `${message}  Add explanatory comments for the code snippet above. and give me modifed code again Dont Provide Explnation Only give me code with comments add in it.`
+          }
+      ],
+      model: "llama3-8b-8192"
   });
-  res.json({ botResponse: response.data.choices[0].text });
+    res.json({ botResponse: result.choices[0]?.message?.content || "" });
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
 });
 
 app.listen(port, () => {
