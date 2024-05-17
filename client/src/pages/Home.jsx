@@ -95,7 +95,6 @@ const Home = () => {
             </svg>
           </button>
         </div>
-        <h1>TalkBot</h1>
       </header>
 
       {showMenu && (

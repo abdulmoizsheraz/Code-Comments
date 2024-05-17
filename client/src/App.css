@@ -421,7 +421,6 @@ nav svg {
     display: flex !important;
     justify-content: center !important;
     width: 100%;
-    border: 2px solid red !important;
   }
   #introsection h1,
   pre {
@@ -442,5 +441,36 @@ nav svg {
   }
   #loginButton {
     font-size: 22px;
+  }
+}
+@media (max-width: 768px) {
+  button[type="submit"] {
+    padding: 12px 30px;
+    font-size: 14px;
+  }
+}
+
+@media (max-width: 480px) {
+  button[type="submit"] {
+    padding: 10px 20px;
+    font-size: 12px;
+  }
+}
+@media (max-width: 768px) {
+  .inputPromptWrapper {
+    width: 90%;
+    height: 50px;
+    gap: 8px; /* Adjust gap for smaller screens */
+    padding: 8px; /* Adjust padding for smaller screens */
+  }
+}
+
+@media (max-width: 480px) {
+  .inputPromptWrapper {
+    width: 95%;
+    height: 45px;
+    gap: 5px; /* Further adjust gap for very small screens */
+    padding: 5px; /* Further adjust padding for very small screens */
+    margin-bottom: 20px; /* Reduce bottom margin for very small screens */
   }
 }
